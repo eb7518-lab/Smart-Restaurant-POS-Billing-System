@@ -1,5 +1,9 @@
 # Smart Restaurant POS & Billing System
 
+A **Python Tkinter-based desktop application** designed to simplify restaurant operations through an interactive graphical user interface.
+
+The application provides an easy-to-use interface for restaurant staff to manage tables, take orders, generate bills, manage menus and monitor restaurant activities. It uses **MySQL** for backend data storage.
+
 ## Student Details
 
 | Field | Details |
@@ -10,107 +14,153 @@
 
 ---
 
-A desktop Point-of-Sale and billing application for restaurants, built with **Python, Tkinter and MySQL**.
+# 1. Project Overview
 
-## Features
+The Smart Restaurant POS & Billing System is a desktop GUI application developed using **Python and Tkinter**.
 
-### Front of House
-- Secure login with two roles: **Admin** and **Cashier** (salted PBKDF2 password hashing).
-- Live table grid (Free / Occupied / Billing) with a "time seated" timer.
-- Order screen with category filters, search, best-sellers-first menu and stock limits.
-- **Kitchen Order Tickets (KOT)** that list only the newly added items.
-- **Smart suggestions** ("Goes well with...") learned from past bills.
+The main objective is to provide a simple, interactive and user-friendly interface through which restaurant staff can perform daily activities without manually managing orders and calculations.
 
-### Billing
-- Discount (% or flat), GST split into CGST/SGST, automatic round-off.
-- Cash (with change calculation), Card and UPI payments.
-- Unique invoice numbers, atomic save (bill + table + stock in one transaction).
-- Printable HTML invoice (print or save as PDF) and invoice reprint.
+The application uses Tkinter widgets such as buttons, labels, frames, entry fields, tables and dialog boxes to create an interactive restaurant management system.
 
-### Admin
-- Dashboard with animated charts: 7-day sales, best sellers, payment split, low stock.
-- **Menu Manager:** add / edit / hide / delete dishes, manage categories.
-- **Staff:** add accounts, change roles, disable accounts, reset passwords.
-- **Reports:** date-range filter, totals, daily sales, items sold, sales by category, **CSV export** (opens in Excel).
-- One-click **demo data** so charts and suggestions can be shown instantly.
+MySQL is integrated to store user accounts, menu information, orders, bills and other application data.
 
-## How to Run
+# 2. Technologies Used
 
-1. Install Python 3.10 or newer (tick "Add Python to PATH") and **MySQL Server**.
-2. Install the MySQL connector:
+| Technology | Purpose |
+|---|---|
+| Python | Main programming language |
+| Tkinter | Graphical User Interface (GUI) development |
+| ttk | Enhanced GUI widgets and tables |
+| MySQL | Backend database management |
+| mysql.connector | Python–MySQL connectivity |
+| Matplotlib / Tkinter Canvas | Dashboard charts and visualizations |
+| HTML | Printable invoice generation |
+| CSV | Report export |
 
-   ```bash
-   pip install mysql-connector-python
-   ```
+# 3. Graphical User Interface Features
 
-3. Open `config.py` and set your MySQL details:
+The main focus of this project is its interactive Tkinter-based interface.
 
-   ```python
-   MYSQL_USER = "root"
-   MYSQL_PASSWORD = "your password"
-   ```
+### Login Screen
+- User-friendly login window.
+- Admin and Cashier authentication.
+- Password-protected access.
+- Role-based navigation.
 
-4. Check the connection:
+### Dashboard
+- Displays restaurant activity and sales information.
+- Interactive dashboard cards.
+- Sales charts and visual statistics.
+- Low-stock notifications.
+- Demo data loading option.
 
-   ```bash
-   python check_mysql.py
-   ```
+### Table Management
+- Displays restaurant tables in a visual grid.
+- Shows Free, Occupied and Billing status.
+- Includes a time-seated timer.
+- Allows staff to select tables and manage orders.
 
-5. Start the application:
+### Order Management
+- Interactive menu display.
+- Category filters and search functionality.
+- Add and manage food items.
+- Quantity and stock validation.
+- Smart food recommendations.
 
-   ```bash
-   python main.py
-   ```
+### Billing Screen
+- Automatic bill calculation.
+- Discount application.
+- GST calculation.
+- Cash, Card and UPI payment options.
+- Automatic round-off and cash change calculation.
 
-   Alternatively, double-click `run_app.bat`.
+### Receipt Window
+- Displays generated invoices.
+- Printable HTML receipts.
+- Option to print or save invoices as PDF.
+- Invoice reprinting.
 
-The database `smart_pos`, all tables and sample data are created automatically on first run. `schema.sql` contains the same tables if you want to view them in MySQL Workbench.
+### Menu Management
+- Add new food items.
+- Edit existing dishes.
+- Manage categories.
+- Update prices and stock.
+- Hide or delete menu items.
 
-### Demo Login Credentials
+### Staff Management
+- Create staff accounts.
+- Assign Admin and Cashier roles.
+- Reset passwords.
+- Enable or disable accounts.
 
-| Role | Username | Password |
-|---|---|---|
-| Admin | `admin` | `admin123` |
-| Cashier | `cashier` | `cash123` |
+### Reports Screen
+- Date-range sales reports.
+- Daily sales information.
+- Best-selling items.
+- Payment statistics.
+- CSV report export.
 
-Change these from **Staff → Reset Password** before real use.
+# 4. Main Tkinter Components Used
 
-## Suggested Demo Script
+| Tkinter Component | Usage |
+|---|---|
+| `Tk()` | Creates the main application window |
+| `Frame` | Organizes different sections of the interface |
+| `Label` | Displays text and headings |
+| `Button` | Performs actions when clicked |
+| `Entry` | Accepts user input |
+| `ttk.Treeview` | Displays tabular information |
+| `ttk.Combobox` | Provides dropdown selections |
+| `messagebox` | Displays alerts and confirmation messages |
+| `Canvas` | Creates graphical dashboard elements |
+| `Toplevel` | Creates additional windows and dialogs |
 
-1. Log in as `admin`, click **Load demo data** on the dashboard.
-2. Show the charts, then go to **Tables → Table 1**, add *Butter Chicken* and use the "Goes well with" suggestion.
-3. Click **Send to Kitchen (KOT)**, then **Generate Bill**, apply a 10% discount and pay by Cash.
-4. Open the printable bill. Open **Reports**, filter by date and export CSV.
-5. Open **Menu Manager** to add a new dish. Open **Staff** to add a cashier.
-6. Click **Clear** on the dashboard to remove the demo data.
+# 5. Application Screens
 
-## Project Structure
+The application is divided into multiple screens to make navigation and management easier.
+
+1. Login Screen
+2. Dashboard
+3. Table Management
+4. Order Management
+5. Billing Screen
+6. Receipt Window
+7. Menu Manager
+8. Staff Management
+9. Reports Screen
+
+Each screen is designed for a specific restaurant operation, making the application easier to understand and use.
+
+# 6. Project Structure
 
 ```text
 smart_pos_mysql/
 │
-├── main.py                 # Starts the app and switches screens
-├── config.py               # Restaurant name, GST rate and colours
-├── check_mysql.py          # Checks MySQL connection
-├── requirements.txt        # Project dependencies
-├── run_app.bat             # Windows launcher
-├── schema.sql              # Database schema
+├── main.py
+├── config.py
+├── check_mysql.py
+├── requirements.txt
+├── run_app.bat
+├── schema.sql
 │
 ├── database/
-│   ├── db.py               # MySQL connection, schema and sample data
-│   └── queries.py          # SQL statements
+│   ├── __init__.py
+│   ├── db.py
+│   └── queries.py
 │
 ├── services/
-│   ├── auth.py             # Authentication
-│   ├── security.py         # Password hashing and security
-│   ├── billing.py          # Bill calculations and rounding
-│   ├── receipt.py          # Text and HTML invoices
-│   ├── menu_service.py     # Menu validation and rules
-│   ├── staff_service.py    # Staff management
-│   ├── export.py           # CSV export
-│   └── demo_data.py        # Sample data
+│   ├── __init__.py
+│   ├── auth.py
+│   ├── security.py
+│   ├── billing.py
+│   ├── receipt.py
+│   ├── menu_service.py
+│   ├── staff_service.py
+│   ├── export.py
+│   └── demo_data.py
 │
 └── ui/
+    ├── __init__.py
     ├── login_screen.py
     ├── dashboard.py
     ├── tables_screen.py
@@ -125,35 +175,109 @@ smart_pos_mysql/
     └── widgets.py
 ```
 
-## Database (MySQL)
+### Explanation of Directories
 
-The project uses the following main tables:
+- **main.py:** Entry point of the application.
+- **config.py:** Stores application settings and configurations.
+- **ui/:** Contains Tkinter screens, widgets and GUI components.
+- **services/:** Handles application logic such as authentication, billing and menu management.
+- **database/:** Handles MySQL connectivity and database queries.
 
-| Table | Description |
+# 7. Backend Database (MySQL)
+
+MySQL is used to store and retrieve application information.
+
+The application uses seven main tables:
+
+| Table | Purpose |
 |---|---|
-| `users` | User accounts, roles and password hashes |
-| `categories` | Menu categories |
-| `menu_items` | Dish details, prices, availability and stock |
-| `tables` | Restaurant table details and status |
-| `orders` | Order information |
-| `order_items` | Items included in each order |
-| `bills` | Invoice and payment details |
+| users | Stores user accounts and roles |
+| categories | Stores menu categories |
+| menu_items | Stores food items, prices and stock |
+| tables | Stores restaurant table information |
+| orders | Stores customer orders |
+| order_items | Stores individual order details |
+| bills | Stores billing and payment information |
 
-### Database Relationships
+The database supports the Tkinter application by maintaining information between operations.
 
-```mermaid
-erDiagram
-    USERS ||--o{ ORDERS : takes
-    TABLES ||--o{ ORDERS : has
-    ORDERS ||--|{ ORDER_ITEMS : contains
-    MENU_ITEMS ||--o{ ORDER_ITEMS : appears_in
-    CATEGORIES ||--o{ MENU_ITEMS : groups
-    ORDERS ||--o| BILLS : settled_by
+# 8. How to Run the Project
+
+### Requirements
+- Python 3.10 or newer.
+- MySQL Server.
+- Visual Studio Code or another Python IDE.
+
+### Step 1: Install Dependencies
+
+```bash
+pip install -r requirements.txt
 ```
 
-## Design Notes
+### Step 2: Configure MySQL
 
-- **Layers:** UI → services (rules) → queries (SQL) → MySQL. Each layer only talks to the next.
-- **Prices are copied** into `order_items`, so changing a menu price never alters old bills.
-- **Deleting a dish** that appears on past bills hides it instead, keeping history intact.
-- **Safety rules:** no double billing, no ordering beyond stock, the last admin cannot be removed, and users cannot disable their own accounts.
+Open `config.py` and enter your MySQL credentials:
+
+```python
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "your password"
+```
+
+### Step 3: Check Database Connection
+
+```bash
+python check_mysql.py
+```
+
+### Step 4: Run the Application
+
+```bash
+python main.py
+```
+
+Alternatively, double-click `run_app.bat` on Windows.
+
+The database and required tables are initialized automatically when the application starts.
+
+# 9. Demo Login Credentials
+
+| Role | Username | Password |
+|---|---|---|
+| Admin | `admin` | `admin123` |
+| Cashier | `cashier` | `cash123` |
+
+These are demonstration credentials. Change them before real-world use.
+
+# 10. Suggested Project Demonstration
+
+1. Open the application and demonstrate the login screen.
+2. Log in as Admin and explore the dashboard.
+3. Demonstrate restaurant table management.
+4. Select a table and add food items through the order screen.
+5. Demonstrate Kitchen Order Tickets (KOT).
+6. Generate a bill and demonstrate payment options.
+7. Display and print the generated receipt.
+8. Demonstrate menu and staff management.
+9. Open the reports screen and export a CSV report.
+
+# 11. Design and Implementation
+
+- **GUI-based design:** Tkinter is used to develop the application's interactive desktop interface.
+- **Modular structure:** Different screens and functionalities are maintained in separate Python files.
+- **Event-driven programming:** Buttons, forms and other widgets respond to user actions through event handlers.
+- **Backend integration:** MySQL stores and manages application data.
+- **Security:** Passwords are protected using salted PBKDF2 hashing.
+- **Billing automation:** The application calculates totals, discounts and taxes automatically.
+
+# 12. Future Enhancements
+
+- Improved GUI animations and visual effects.
+- Online food ordering integration.
+- Cloud-based database connectivity.
+- Mobile application support.
+- Multi-branch restaurant management.
+- Online payment gateway integration.
+
+---
+
+**Developed using Python, Tkinter and MySQL.**
